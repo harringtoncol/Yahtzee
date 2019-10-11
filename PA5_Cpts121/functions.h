@@ -39,3 +39,40 @@ void display_menu();
 * Postconditions: returns a number based on what choice they pick
 */
 int get_menu_choice(void);
+
+/*
+* Function: print_game_rules()
+* Date Created: 10/4/2019
+* Date Last Modified: 10/11/2019
+* Description:  prints out the game rules
+* Input parameters: Void
+* Returns: Void
+* Preconditions: Called menu and user inputed 4
+* Postconditions: prints out game rules;
+*/
+void print_game_rules(void);
+
+/*
+* Function: pause()
+* Date Created : 9 / 11 / 2019
+* Date Last Modified : 10/4 / 2019
+* Description : pauses the code and asks the user to press a key
+* to proceed
+* Input parameters : None
+* Returns : Nothing
+* Preconditions : Has to be a windows computer
+* Postconditions : Prompts user to press key to continue and returns clearing menu space
+*/
+void pause();
+
+/*
+* Function: clear()
+* Date Created: 10/4/2019
+* Date Last Modified: 10/4/2019
+* Description:  clears the console 
+* Input parameters: Void
+* Returns: void
+* Preconditions: none
+* Postconditions: clears screen
+*/
+void clear(void);

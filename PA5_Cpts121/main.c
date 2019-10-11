@@ -10,10 +10,26 @@
 #include "functions.h"
 
 int main(void) {
+	int choice = 0;
+	bool quit = false;
 
+	do {
+		clear();
+		display_menu();
+		choice = get_menu_choice();
 
-	display_menu();
+		if (choice == 1) {
+			print_game_rules();
+			pause();
+		}
+		else if (choice == 2) {
 
+		}
+		else {
+			quit = true;
+		}
+	} while (!quit);
 
-	return 0; 
+	printf("Thanks for playing Yahtzee! See you next time!");
+	return 0;
 }
