@@ -76,3 +76,28 @@ void pause();
 * Postconditions: clears screen
 */
 void clear(void);
+
+/*
+* Function: roll_die()
+* Date Created: 10/4/2019
+* Date Last Modified: 10/11/2019
+* Description:  Rolls one die
+* Input parameters: void
+* Returns: integer
+* Preconditions:
+* Postconditions: returns a value between 1 and 6 simulating the roll of the dice
+*/
+int roll_die(void);
+
+/*
+* Function: roll_again()
+* Date Created: 10/11/2019
+* Date Last Modified: 10/11/2019
+* Description:  Asks if user wants to roll dice again
+* Input parameters: array
+* Returns: void
+* Preconditions:
+* Postconditions: returns array of 0 if doesnt want to be rolled again 1 if wants to be rolled agin
+*/
+
+void roll_again(int dice_array[]);

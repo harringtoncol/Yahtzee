@@ -111,3 +111,216 @@ void clear(void) {
 
 	system("cls");
 }
+
+/*
+* Function: roll_die()
+* Date Created: 10/4/2019
+* Date Last Modified: 10/11/2019
+* Description:  Rolls one die
+* Input parameters: void
+* Returns: integer
+* Preconditions:
+* Postconditions: returns a value between 1 and 6 simulating the roll of the dice
+*/
+int roll_die(void) {
+	int value = 0;
+
+	value = rand() % 6 + 1;
+
+	return value;
+}
+
+/*
+* Function: roll_again()
+* Date Created: 10/11/2019
+* Date Last Modified: 10/11/2019
+* Description:  Asks if user wants to roll dice again
+* Input parameters: array
+* Returns: void
+* Preconditions:
+* Postconditions: returns array of 0 if doesnt want to be rolled again 1 if wants to be rolled agin 
+*/
+
+void roll_again(int dice_array[]) {
+	int num = 0;
+	printf("How many dice would you like to re-roll?");
+	scanf("%d", &num);
+	
+	for (int i = 0; i < num; i++) {
+		int dice_num = 0;
+		printf("Which dice would you like to re-roll? (1-5)");
+		scanf("%d", &dice_num);
+		
+		dice_array[dice_num - 1] = roll_die();
+
+
+	}
+
+}
+
+/*
+* Function: scorecard()
+* Date Created: 10/11/2019
+* Date Last Modified: 10/11/2019
+* Description:  Prints out choices user can pick to get scored, then scores them with that. 
+* Input parameters: array, array, int
+* Returns: void
+* Preconditions: Have completely rolled out your 3 turns
+* Postconditions: updates points earned at end of roll.
+*/
+
+void scorecard(int *player_points[], int turn, int dice[]) {
+	int choice = 0;
+	char choices[13][25] = { "1. Sum of 1's", "2. Sum of 2's", "3. Sum of 3's", "4. Sum of 4's", "5. Sum of 5's", "6. Sum of 6's","7. Three-of-a-kind", "8. Four-of-a-kind",
+	"9. Full house", "10. Small straight", "11. Large straight", "12. Yahtzee" };
+
+	printf("Which thingy would you like to do?\n");
+	
+	for (int i = 0; i < 14; i++) {
+
+		if (player_points[i] == -1) {
+			printf("%s\n", choices[i]);
+		}
+
+		}	
+	do {
+		scanf("%d", &choice);
+		if (player_points[choice] != -1) {
+			printf("Please enter an open choice");
+		}
+
+	} while (player_points[choice] != -1);
+	
+	if (choice == 1) {
+		player_points[0] == 0;
+		for (int i = 0; i < 5; i++) {
+			if (dice[i] == 1)
+				player_points[0] += 1;
+		}
+	}
+	else if (choice == 2) {
+		player_points[1] == 0;
+		for (int i = 0; i < 5; i++) {
+			if (dice[i] == 2)
+				player_points[1] += 1;
+		}
+	}
+	else if (choice == 3) {
+		player_points[2] == 0;
+		for (int i = 0; i < 5; i++) {
+			if (dice[i] == 3)
+				player_points[2] += 1;
+		}
+	}
+	else if (choice == 4) {
+		player_points[3] == 0;
+		for (int i = 0; i < 5; i++) {
+			if (dice[i] == 4)
+				player_points[3] += 1;
+		}
+	}
+	else if (choice == 5) {
+		player_points[4] == 0;
+		for (int i = 0; i < 5; i++) {
+			if (dice[i] == 5)
+				player_points[4] += 1;
+		}
+	}
+	else if (choice == 6) {
+		player_points[5] == 0;
+		for (int i = 0; i < 5; i++) {
+			if (dice[i] == 6)
+				player_points[5] += 1;
+		}
+	}
+	else if (choice == 7) {
+		player_points[6] == 0;
+		bool works = false;
+		int dice_amts[6] = { 0 };
+		for (int i = 0; i < 5; i++) {
+			dice_amts[dice[i]]++;
+		}
+		for (int i = 0; i < 5; i++) {
+			if (dice_amts[i] == 3) {
+				works = true;
+			}
+		}
+		if (works) {
+			for (int i = 0; i < 5; i++) {
+				player_points[6] += dice[i];
+			}
+		}
+
+	}
+	else if (choice == 8) {
+		bool works = false;
+		player_points[7] == 0;
+		int dice_amts[6] = { 0 };
+		for (int i = 0; i < 5; i++) {
+			dice_amts[dice[i]]++;
+		}
+		for (int i = 0; i < 5; i++) {
+			if (dice_amts[i] == 4) {
+				works = true;
+			}
+		}
+		if (works) {
+			for (int i = 0; i < 5; i++) {
+				player_points[7] += dice[i];
+			}
+		}
+	}
+	else if (choice == 9) {
+		bool works = false;
+		bool works_as_well = false;
+		int dice_amts[6] = { 0 };
+		for (int i = 0; i < 5; i++) {
+			dice_amts[dice[i]]++;
+		}
+		for (int i = 0; i < 5; i++) {
+			if (dice_amts[i] == 3) {
+				works = true;
+			}
+			if (dice_amts[i] == 2) {
+				works_as_well = true;
+			}
+		}
+		if (works && works_as_well) {
+			for (int i = 0; i < 5; i++) {
+				player_points[8] = 25;
+			}
+		}
+	}
+	else if (choice == 10) {
+		if (dice[0] == 1 && dice[1] == 2 && dice[2] == 3 && dice[3] == 4 && dice[4] == 5 || dice[1] == 2 && dice[2] == 3 && dice[3] == 4 && dice[4] == 5 && dice[5] == 6) {
+			player_points[10] == 30;
+		}
+	}
+	else if (choice ==11) {
+		if (dice[0] == 1 && dice[1] == 2 && dice[2] == 3 && dice[3] == 4 && dice[4] == 5 && dice[5] == 6) {
+			player_points[10] == 40;
+		}
+	}
+	else if (choice == 12) {
+	bool works = false;
+	int dice_amts[6] = { 0 };
+	for (int i = 0; i < 5; i++) {
+		dice_amts[dice[i]]++;
+	}
+	for (int i = 0; i < 5; i++) {
+		if (dice_amts[i] == 5) {
+			works = true;
+		}
+	}
+	if (works) {
+		for (int i = 0; i < 5; i++) {
+			player_points[11] = 50;
+		}
+	}
+	}
+	
+
+
+
+
+}

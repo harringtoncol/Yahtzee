@@ -10,11 +10,16 @@
 #include "functions.h"
 
 int main(void) {
-	int choice = 0;
+	int choice = 0, turn = 0;
 	bool quit = false;
+	int dice[] = { 0,0,0,0,0 };
+	int player_points[13][2] = { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 }; 
+	srand(time(NULL));
+
+	
 
 	do {
-		clear();
+		//clear();
 		display_menu();
 		choice = get_menu_choice();
 
@@ -23,6 +28,39 @@ int main(void) {
 			pause();
 		}
 		else if (choice == 2) {
+			do {
+				for (int i = 0; i < 2; i++) {
+					clear();
+					printf("Player %d it is your turn", (i + 1));
+					
+
+					for (int i = 0; i < 5; i++) {
+						dice[i] = roll_die();
+						printf("%d\n", dice[i]);
+					}
+					for (int i = 0; i < 2; i++) {
+						roll_again(dice);
+
+
+						for (int i = 0; i < 5; i++) {
+
+							printf("%d\n", dice[i]);
+						}
+
+					}
+
+					scorecard(player_points[0], i);
+				}
+
+				turn++;
+			} while (turn < 14);
+
+
+
+
+
+
+
 
 		}
 		else {
